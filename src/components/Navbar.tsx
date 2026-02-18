@@ -30,15 +30,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  return (
+    return (
     <>
-      <header
-        className={`sticky top-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-2xl shadow-[0_1px_0_rgba(91,33,182,0.08),0_8px_40px_rgba(91,33,182,0.08)]"
-            : "bg-transparent backdrop-blur-sm"
-        }`}
-      >
+          <header
+            className="sticky top-0 z-50 border-b border-white/10"
+            style={{ background: "#08021a" }}
+          >
         {/* Scroll progress bar */}
         <div
           className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-violet-600 via-purple-500 to-orange-500 transition-all duration-100"
@@ -46,16 +43,16 @@ export default function Navbar() {
         />
 
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-[72px]">
+            <div className="flex items-center justify-between h-[52px]">
 
             {/* Logo */}
               <Link href="/" className="flex items-center group">
-                <div className="relative w-[52px] h-[52px] group-hover:scale-105 transition-all duration-300">
+                <div className="relative w-[40px] h-[40px] group-hover:scale-105 transition-all duration-300">
                   <Image
                     src="/logo.png"
                     alt="Urgences Simplifiées"
-                    width={52}
-                    height={52}
+                    width={40}
+                    height={40}
                     className="rounded-xl object-cover"
                     priority
                   />
@@ -71,39 +68,39 @@ export default function Navbar() {
                     key={link.href}
                     href={link.href}
                     className={`relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                      isActive
-                        ? "text-purple-700 bg-purple-50/80"
-                        : "text-gray-500 hover:text-gray-900 hover:bg-gray-50/80"
-                    }`}
+                        isActive
+                          ? "text-white bg-white/15 backdrop-blur-sm"
+                          : "text-white/70 hover:text-white hover:bg-white/10"
+                      }`}
                   >
                     {link.label}
                     {isActive && (
-                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-purple-600" />
+                      <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-white/80" />
                     )}
                   </Link>
                 );
               })}
             </nav>
 
-            {/* Desktop CTA */}
-            <div className="hidden md:flex items-center gap-3">
-              <Link
-                href="/formations"
-                className="btn-shimmer group relative inline-flex items-center gap-2 px-5 py-[10px] rounded-xl bg-gradient-to-r from-purple-700 to-violet-600 hover:from-purple-600 hover:to-violet-500 text-white text-sm font-semibold transition-all duration-300 shadow-lg shadow-purple-900/25 hover:shadow-purple-700/35 hover:-translate-y-px"
-              >
-                <Zap className="w-3.5 h-3.5 text-orange-300" />
-                Accéder aux formations
-              </Link>
-            </div>
+              {/* Desktop CTA */}
+              <div className="hidden md:flex items-center gap-3">
+                <Link
+                  href="/formations"
+                  className="btn-shimmer group relative inline-flex items-center gap-2 px-5 py-[10px] rounded-xl bg-gradient-to-r from-purple-700 to-violet-600 hover:from-purple-600 hover:to-violet-500 text-white text-sm font-semibold transition-all duration-300 shadow-lg shadow-purple-900/30 hover:-translate-y-px"
+                >
+                  <Zap className="w-3.5 h-3.5 text-orange-300" />
+                  Accéder aux formations
+                </Link>
+              </div>
 
             {/* Mobile toggle */}
-            <button
-              className={`md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${
-                open ? "bg-purple-50 text-purple-700" : "text-gray-600 hover:bg-gray-50"
-              }`}
-              onClick={() => setOpen(!open)}
-              aria-label="Menu"
-            >
+              <button
+                className={`md:hidden relative w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200 ${
+                  open ? "bg-white/20 text-white border border-white/25" : "text-white/70 hover:bg-white/10 hover:text-white"
+                }`}
+                onClick={() => setOpen(!open)}
+                aria-label="Menu"
+              >
               <span className={`absolute transition-all duration-200 ${open ? "opacity-100 rotate-0" : "opacity-0 rotate-90"}`}>
                 <X className="w-5 h-5" />
               </span>
@@ -120,36 +117,38 @@ export default function Navbar() {
             open ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
-          <div className="border-t border-purple-50 bg-white/98 backdrop-blur-xl px-4 py-4 space-y-1 shadow-xl shadow-purple-900/10">
-            {navLinks.map((link) => {
-              const isActive = pathname === link.href;
-              return (
+            <div className="border-t border-white/10 bg-white/10 backdrop-blur-2xl px-4 py-4 space-y-1"
+              style={{ WebkitBackdropFilter: "blur(24px) saturate(180%)" }}
+            >
+              {navLinks.map((link) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? "bg-white/15 text-white font-semibold border border-white/20"
+                        : "text-white/70 hover:bg-white/10 hover:text-white"
+                    }`}
+                  >
+                    {isActive && <span className="w-1.5 h-1.5 rounded-full bg-white/80 mr-3" />}
+                    {link.label}
+                  </Link>
+                );
+              })}
+              <div className="pt-2">
                 <Link
-                  key={link.href}
-                  href={link.href}
+                  href="/formations"
                   onClick={() => setOpen(false)}
-                  className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
-                    isActive
-                      ? "bg-purple-50 text-purple-700 font-semibold"
-                      : "text-gray-600 hover:bg-gray-50/80 hover:text-gray-900"
-                  }`}
+                  className="btn-shimmer flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold bg-white/15 hover:bg-white/25 border border-white/25 text-white backdrop-blur-sm"
                 >
-                  {isActive && <span className="w-1.5 h-1.5 rounded-full bg-purple-600 mr-3" />}
-                  {link.label}
+                  <Zap className="w-3.5 h-3.5 text-orange-300" />
+                  Accéder aux formations
                 </Link>
-              );
-            })}
-            <div className="pt-2">
-              <Link
-                href="/formations"
-                onClick={() => setOpen(false)}
-                className="btn-shimmer flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-purple-700 to-violet-600 text-white shadow-lg shadow-purple-900/20"
-              >
-                <Zap className="w-3.5 h-3.5 text-orange-300" />
-                Accéder aux formations
-              </Link>
+              </div>
             </div>
-          </div>
         </div>
       </header>
     </>

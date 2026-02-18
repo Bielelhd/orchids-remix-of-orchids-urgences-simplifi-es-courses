@@ -217,7 +217,7 @@ export default function HomePage() {
           style={{ backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")" }}
         />
 
-        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-28 w-full">
+          <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-16 pb-28 w-full">
           <div className="max-w-4xl mx-auto text-center">
 
             {/* Eyebrow */}
@@ -252,7 +252,7 @@ export default function HomePage() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
               <Link
                 href="/formations"
-                className="btn-shimmer group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-orange-500 hover:bg-orange-400 text-white font-bold text-[15px] transition-all duration-300 shadow-2xl shadow-orange-900/40 hover:shadow-orange-500/40 hover:-translate-y-1"
+                  className="btn-shimmer group relative inline-flex items-center gap-3 px-8 py-4 rounded-2xl bg-white/15 hover:bg-white/25 border border-white/20 hover:border-white/35 text-white font-bold text-[15px] transition-all duration-300 shadow-2xl shadow-orange-900/20 hover:-translate-y-1 backdrop-blur-sm"
               >
                 <Sparkles className="w-4 h-4 text-white/80" />
                 Découvrir les formations
